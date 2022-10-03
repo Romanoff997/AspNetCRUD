@@ -1,15 +1,29 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using WebApplication2.Domen;
+using WebApplication2.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//builder.Services.AddAuthentication("Bearer").AddApplicationCookie();  // схема аутентификации - с помощью jwt-токенов
+    //.AddJwtBearer();      // подключение аутентификации с помощью jwt-токенов
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer("Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;"));
+
+
 
 var app = builder.Build();
+
+builder.Configuration.AddJsonFile("appsettings.json");
+//var config = app.Configuration.Get<Config>();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -18,7 +32,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCookiePolicy();
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

@@ -4,17 +4,19 @@ namespace WebApplication2.Models
 {
     public class EmployeeInfo
     {
-        public int ID { get; set; }
         [Required]
+        public Guid ID { get; set; }
+
+        [Display(Name = "Имя")]
         public string Name { get; set; }
-        [Required]
 
+        [Display(Name = "Пол")]
         public string Gender { get; set; }
-        [Required]
 
+        [Display(Name = "Компания")]
         public string Company { get; set; }
-        [Required]
 
+        [Display(Name = "Отдел")]
         public string Department { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace WebApplication2.Models
                 while (dr.Read())
                 {
                     EmployeeInfo emp = new EmployeeInfo();
-                    emp.ID = Convert.ToInt32(dr["ID"].ToString());
+                    emp.ID = new Guid(dr["ID"].ToString());
                     emp.Name = dr["Name"].ToString();
                     emp.Gender = dr["Gender"].ToString();
                     emp.Company = dr["Company"].ToString();
@@ -92,7 +92,7 @@ namespace WebApplication2.Models
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    emp.ID = Convert.ToInt32(dr["ID"].ToString());
+                    emp.ID = new Guid(dr["ID"].ToString());
                     emp.Name = dr["Name"].ToString();
                     emp.Gender = dr["Gender"].ToString();
                     emp.Company = dr["Company"].ToString();
