@@ -16,7 +16,7 @@ builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer("Server=.\\SQLEXP
 var app = builder.Build();
 
 builder.Configuration.AddJsonFile("appsettings.json");
-//var config = app.Configuration.Get<Config>();
+var config = app.Configuration.Get<Config>();
 
 
 

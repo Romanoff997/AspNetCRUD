@@ -12,7 +12,7 @@ using WebApplication2.Domen;
 namespace WebApplication2.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20221003110839__initial")]
+    [Migration("20221004095811__initial")]
     partial class _initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,12 +48,12 @@ namespace WebApplication2.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Test");
+                    b.ToTable("Employee");
 
                     b.HasData(
                         new
                         {
-                            ID = new Guid("a37e2f12-3d37-4102-a791-ca2b55f09193"),
+                            ID = new Guid("9e468402-2999-422b-8056-3a5002357a80"),
                             Company = "Company 1",
                             Department = "Dep 1",
                             Gender = "Man",
@@ -61,7 +61,7 @@ namespace WebApplication2.Migrations
                         },
                         new
                         {
-                            ID = new Guid("e330c4db-03cd-49cb-8552-fe2598afdadb"),
+                            ID = new Guid("9bbc96b5-3dda-4297-8d08-b5348646098b"),
                             Company = "Company 2",
                             Department = "Dep 1",
                             Gender = "Man",
@@ -69,7 +69,7 @@ namespace WebApplication2.Migrations
                         },
                         new
                         {
-                            ID = new Guid("113def3b-08d8-48c2-86b5-90180cb95949"),
+                            ID = new Guid("bd58569e-3659-49e8-bc42-711f51c077d2"),
                             Company = "Company 2",
                             Department = "Dep 1",
                             Gender = "Woman",

@@ -8,7 +8,7 @@ namespace WebApplication2.Domen
 {
     public class MyDbContext: DbContext
     {
-        public DbSet<EmployeeInfo> Test { get; set; }
+        public DbSet<EmployeeInfo> Employee { get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

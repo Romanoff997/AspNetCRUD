@@ -1,10 +1,12 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using WebApplication2.Service;
+
 namespace WebApplication2.Models
 {
     public class EmployeeDAL
     {
-        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WebDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connectionString = "Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;";
         public IEnumerable<EmployeeInfo> GetAllEmployee()
         {
             List<EmployeeInfo> empList = new List<EmployeeInfo>();
@@ -35,7 +37,7 @@ namespace WebApplication2.Models
             {
                 SqlCommand cmd = new SqlCommand("SP_InsertEmployee", con);
                 cmd.CommandType=CommandType.StoredProcedure;
-
+                cmd.Parameters.AddWithValue("@ID", Guid.NewGuid());
                 cmd.Parameters.AddWithValue("@Name", emp.Name);
                 cmd.Parameters.AddWithValue("@Gender", emp.Gender);
                 cmd.Parameters.AddWithValue("@Company", emp.Company);
@@ -65,7 +67,7 @@ namespace WebApplication2.Models
             }
         }
 
-        public void DeleteEmployee(int? empId)
+        public void DeleteEmployee(Guid? empId)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -80,7 +82,7 @@ namespace WebApplication2.Models
             }
         }
 
-        public EmployeeInfo GetEmployeeById(int? empId)
+        public EmployeeInfo GetEmployeeById(Guid? empId)
         {
             EmployeeInfo emp = new EmployeeInfo();
             using (SqlConnection con = new SqlConnection(connectionString))

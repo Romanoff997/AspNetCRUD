@@ -30,7 +30,7 @@ namespace WebApplication1.Controllers
             return View(objEmp);
         }
 
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(Guid? id)
         {
             if (id == null)
             {
@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int? id)
+        public IActionResult Details(Guid? id)
         {
             if (id == null)
             {
@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
             return View(emp);
         }
 
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(Guid? id)
         {
             if (id == null)
             {
@@ -90,7 +90,7 @@ namespace WebApplication1.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteEmp(int id)
+        public IActionResult DeleteEmp(Guid id)
         {
             employeeDAL.DeleteEmployee(id);
             return RedirectToAction("Index");
