@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication2.Domen;
 using WebApplication2.Models;
 
 namespace WebApplication1.Controllers
 {
     public class EmployeeController : Controller
     {
-        EmployeeDAL employeeDAL = new EmployeeDAL();
+        private readonly DataManager dataManager;
+
+        public EmployeeController(DataManager dataManager)
+        {
+            this.dataManager = dataManager;
+        }
+
         public IActionResult Index()
         {
             List<EmployeeInfo> empList = new List<EmployeeInfo>();
-            empList = employeeDAL.GetAllEmployee().ToList();
+            empList = dataManager.EmployeeFields.GetAllEmployee().ToList();
             return View(empList);
         }
         [HttpGet]
@@ -24,7 +31,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                employeeDAL.AddEmployee(objEmp);
+                dataManager.EmployeeFields.AddEmployee(objEmp);
                 return RedirectToAction("Index");
             }
             return View(objEmp);
@@ -36,7 +43,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            EmployeeInfo emp = employeeDAL.GetEmployeeById(id);
+            EmployeeInfo emp = dataManager.EmployeeFields.GetEmployeeById(id);
             if (emp == null)
             {
                 return NotFound();
@@ -54,10 +61,10 @@ namespace WebApplication1.Controllers
             }
             if (ModelState.IsValid)
             {
-                employeeDAL.UpdateEmployee(objEmp);
+                dataManager.EmployeeFields.UpdateEmployee(objEmp);
                 return RedirectToAction("Index");
             }
-            return View(employeeDAL);
+            return View(dataManager.EmployeeFields);
         }
 
         [HttpGet]
@@ -67,7 +74,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            EmployeeInfo emp = employeeDAL.GetEmployeeById(id);
+            EmployeeInfo emp = dataManager.EmployeeFields.GetEmployeeById(id);
             if (emp == null)
             {
                 return NotFound();
@@ -81,7 +88,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            EmployeeInfo emp = employeeDAL.GetEmployeeById(id);
+            EmployeeInfo emp = dataManager.EmployeeFields.GetEmployeeById(id);
             if (emp == null)
             {
                 return NotFound();
@@ -92,7 +99,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteEmp(Guid id)
         {
-            employeeDAL.DeleteEmployee(id);
+            dataManager.EmployeeFields.DeleteEmployee(id);
             return RedirectToAction("Index");
         }
     }

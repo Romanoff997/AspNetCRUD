@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Domen;
+using WebApplication2.Domen.Repositories.Abstract;
+using WebApplication2.Domen.Repositories.DAL;
 using WebApplication2.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,12 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer("Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;"));
 
+builder.Services.AddTransient<IEmployeeInfoRepository, EmployeeDAL>();
+builder.Services.AddTransient<DataManager>();
 
 
 var app = builder.Build();
 
 builder.Configuration.AddJsonFile("appsettings.json");
 var config = app.Configuration.Get<Config>();
+
 
 
 

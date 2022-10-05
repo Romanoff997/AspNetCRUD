@@ -1,10 +1,12 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using WebApplication2.Domen.Repositories.Abstract;
+using WebApplication2.Models;
 using WebApplication2.Service;
 
-namespace WebApplication2.Models
+namespace WebApplication2.Domen.Repositories.DAL
 {
-    public class EmployeeDAL
+    public class EmployeeDAL: IEmployeeInfoRepository
     {
         string connectionString = "Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;";
         public IEnumerable<EmployeeInfo> GetAllEmployee()
