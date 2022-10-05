@@ -8,7 +8,12 @@ namespace WebApplication2.Domen.Repositories.DAL
 {
     public class EmployeeDAL: IEmployeeInfoRepository
     {
-        string connectionString = "Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;";
+        //string connectionString = "Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;";
+        private readonly string connectionString="Server=.\\SQLEXPRESS;Database=CRUDDB;Trusted_Connection=True; User Id=sa; Password=qwerty; MultipleActiveResultSets=True;";
+        //public EmployeeDAL(MyDbContext context)
+        //{
+        //    connectionString = Config.ConnectionString;
+        //}
         public IEnumerable<EmployeeInfo> GetAllEmployee()
         {
             List<EmployeeInfo> empList = new List<EmployeeInfo>();
@@ -35,11 +40,11 @@ namespace WebApplication2.Domen.Repositories.DAL
         }
         public void AddEmployee(EmployeeInfo emp)
         {
+            var df = Config.ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("SP_InsertEmployee", con);
-                cmd.CommandType=CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", Guid.NewGuid());
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Name", emp.Name);
                 cmd.Parameters.AddWithValue("@Gender", emp.Gender);
                 cmd.Parameters.AddWithValue("@Company", emp.Company);
