@@ -6,9 +6,9 @@
     ViewBag.Title = "Index";
 }
 <h1>Index</h1>
-@*<p>
+<p>
     <a asp-action="Create">Create New</a>
-</p>*@
+</p>
 @*For Display Employee Info*@
 <table class="table table-striped">
     <thead>
@@ -46,7 +46,7 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@emp.ID">Edit</a>
                     <a asp-action="Details" asp-route-id="@emp.ID">Details</a>
-                    @*<a asp-action="Delete" asp-route-id="@emp.ID">Delete</a>*@
+                    <a asp-action="Delete" asp-route-id="@emp.ID">Delete</a>
                 </td>
             </tr>
            }
