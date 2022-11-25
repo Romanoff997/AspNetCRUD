@@ -1,0 +1,55 @@
+﻿@model WebApplication2.ViewModels.ProfileViewModel
+
+<h2>Ресурсы игрока</h2>
+<form method="post" asp-controller="Account" asp-action="Index">
+    @*<div asp-validation-summary="ModelOnly"></div>*@
+    <div>
+        <input type="hidden" asp-for="userInfo.Id"/> 
+    </div>
+    <div>
+        <label asp-for="userInfo.Energy"></label><br />
+        <input asp-for="userInfo.Energy" />
+        <span asp-validation-for="userInfo.Energy"></span>
+    </div>
+    <div>
+        <label asp-for="userInfo.Gold"></label><br />
+        <input asp-for="userInfo.Gold" />
+        <span asp-validation-for="userInfo.Gold"></span>
+    </div>
+    <div>
+        <label asp-for="userInfo.Rubies"></label><br />
+        <input asp-for="userInfo.Rubies" />
+        <span asp-validation-for="userInfo.Rubies"></span>
+    </div>
+    <div>
+        <input type="submit" value="Изменить" />
+    </div>
+</form>
+@*    <form method="post" asp-controller="Account" asp-action="IndexJson">
+
+    <from/>*@
+    @*<button id="userJson">JSON</button>*@
+<a asp-controller="Account" asp-action="JsonIndex" asp-route-id="@Model.userInfo.Id">Json</a>
+    <div id="userJsonText">
+         @Html.DisplayFor(model=>model.Json)
+    </div>
+@section Scripts{
+    <script type="text/javascript">
+        $('#userJson').click(function () {
+            var url = "@Url.Action("JsonIndex")";
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function (json) {
+                    $('#userJsonText').val(json);
+                    // здесь в переменной product прийдет 
+                    // товар в виде json-объекта, и вы можете обновить
+                    // информацию на странице, используя эти данные              
+                },
+                error: function (req, status, error){
+                    console.log(status);
+                }
+            }); 
+     });</script>
+ }

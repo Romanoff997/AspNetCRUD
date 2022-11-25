@@ -20,6 +20,21 @@ namespace WebApplication1.Controllers
             return View(empList);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(EmployeeInfo objEmp)
+        {
+            if (ModelState.IsValid)
+            {
+                dataManager.EmployeeFields.AddEmployee(objEmp);
+                return RedirectToAction("Index");
+            }
+            return View(objEmp);
+        }
+
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -77,6 +92,13 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
             return View(emp);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteEmp(Guid id)
+        {
+            dataManager.EmployeeFields.DeleteEmployee(id);
+            return RedirectToAction("Index");
         }
     }
 }

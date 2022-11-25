@@ -1,26 +1,27 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<WebApplication2.Models.EmployeeInfo>
+﻿@model IEnumerable<WebApplication2.Models.EmployeeInfo>
 @{
     ViewBag.Title = "Index";
 }
 <h1>Index</h1>
-@*<p>
+<p>
     <a asp-action="Create">Create New</a>
-</p>*@
+</p>
 @*For Display Employee Info*@
-<table class="table table-striped">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model=>model.Name)
+                @*<label asp-for="Name"></label>*@
             </th>
             <th>
                 @Html.DisplayNameFor(model=>model.Gender)
+                @*<label asp-for="Gender"></label>*@
             </th>
             <th>
                 @Html.DisplayNameFor(model=>model.Company)
+               @* <label asp-for="Company"></label>*@
             </th>
             <th>
                 @Html.DisplayNameFor(model=>model.Department)
@@ -46,10 +47,11 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@emp.ID">Edit</a>
                     <a asp-action="Details" asp-route-id="@emp.ID">Details</a>
-                    @*<a asp-action="Delete" asp-route-id="@emp.ID">Delete</a>*@
+                    <a asp-action="Delete" asp-route-id="@emp.ID">Delete</a>
                 </td>
             </tr>
            }
     </tbody>
 
 </table>
+</div>

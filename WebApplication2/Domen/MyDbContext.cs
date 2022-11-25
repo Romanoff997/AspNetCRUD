@@ -9,6 +9,7 @@ namespace WebApplication2.Domen
     public class MyDbContext: IdentityDbContext<IdentityUser>
     {
         public DbSet<EmployeeInfo> Employee { get; set; }
+        public DbSet<UserInfo> UserAssets { get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) 
         {
             Database.EnsureCreated();
@@ -18,30 +19,30 @@ namespace WebApplication2.Domen
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Id = "k4636402-eu9b-4aa3-h242-a8fbc26f2200",
-                Name = "admin",
-                NormalizedName = "ADMIN"
-            });
+            //modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            //{
+            //    Id = "k4636402-eu9b-4aa3-h242-a8fbc26f2200",
+            //    Name = "admin",
+            //    NormalizedName = "ADMIN"
+            //});
 
-            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
-            {
-                Id = "a90494b4-dad6-4288-adc2-e970281bdf3f                                                                                                                                                      ",
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
-                Email = "my@email.com",
-                NormalizedEmail = "MY@EMAIL.COM",
-                EmailConfirmed = true,
-                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "qwerty"),
-                SecurityStamp = string.Empty
-            });
+            //modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            //{
+            //    Id = "a90494b4-dad6-4288-adc2-e970281bdf3f                                                                                                                                                      ",
+            //    UserName = "admin",
+            //    NormalizedUserName = "ADMIN",
+            //    Email = "my@email.com",
+            //    NormalizedEmail = "MY@EMAIL.COM",
+            //    EmailConfirmed = true,
+            //    PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "qwerty"),
+            //    SecurityStamp = string.Empty
+            //});
 
-            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-            {
-                RoleId = "k4636402-eu9b-4aa3-h242-a8fbc26f2200",
-                UserId = "a90494b4-dad6-4288-adc2-e970281bdf3f"
-            });
+            //modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            //{
+            //    RoleId = "k4636402-eu9b-4aa3-h242-a8fbc26f2200",
+            //    UserId = "a90494b4-dad6-4288-adc2-e970281bdf3f"
+            //});
 
             modelBuilder.Entity<EmployeeInfo>().HasData(new EmployeeInfo
             {
